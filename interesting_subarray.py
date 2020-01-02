@@ -37,18 +37,15 @@ def main():
         arr = list(map(int, next(console).split()))
 
         flag = False
-        
-        if not flag:
-            for s in range(0, n-1):
-                if not flag:
-                    for e in range(s+1, n+1):
-                        check_arr = arr[s:e]
-                    if check_interesting(check_arr):
-                        print ("YES")
-                        print (s+1, " ", e)
-                        flag = True
-                        break
-                    
+        for s in range(0, n-1):
+            for e in range(s+1, n+1):
+                check_arr = arr[s:e]
+                if check_interesting(check_arr) and not flag:
+                   print ("YES")
+                   print (s+1, " ", e)
+                   flag = True
+                   break
+                
         if(not flag):
             print("NO")
 
