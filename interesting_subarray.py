@@ -28,8 +28,8 @@ You can print each letter in any case (upper or lower).
 
 def main():
     from sys import stdin
-    console = iter(stdin.read().split("\n"))
-    # console = iter(("3\n5\n1 2 3 4 5\n4\n2 0 1 9\n2\n2019 2020").split("\n"))
+    # console = iter(stdin.read().split("\n"))
+    console = iter(("3\n5\n1 2 3 4 5\n4\n2 0 1 9\n2\n2019 2020").split("\n"))
     for t in range(0, int(next(console))):
 
         n = int(next(console))
@@ -37,28 +37,16 @@ def main():
         arr = list(map(int, next(console).split()))
 
         flag = False
-        for s in range(0, n-1):
-            for e in range(s+1, n+1):
-                check_arr = arr[s:e]
-                if check_interesting(check_arr) and not flag:
-                   print ("YES")
-                   print (s+1, " ", e)
-                   flag = True
-                   break
-                
-        if(not flag):
+        for i in range(1,len(arr)):
+            current = arr[i]
+            last = arr[i-1]
+            if current - last != 1:
+                flag = True
+                break
+        
+        if flag:
+            print("YES")
+            print(arr.index(min(arr)), " ", arr.index(max(arr)) + 1) 
+        else:
             print("NO")
-
-
-
-
-def check_interesting(array):
-    if max(array) - min(array) >= len(array):
-        return True
-    else:
-        return False
-    
-
-
-
 main()
