@@ -27,4 +27,82 @@ If there are different solutions, you are allowed to output any of them.
 
 """
 
-input = 
+
+# for t in range(0, int(input())):
+  #  n = input()
+   # arr = list(map(int, input().split()))
+
+    # binary converter
+    
+bin_list = []
+
+# for el in arr:
+
+
+def bin_convert(num):
+    
+    el = num
+    count = 0
+    count_list = []
+    while True:
+        el = el // 2
+        if el >= 1:
+            count += 1
+            continue
+        count_list.append(count)
+        
+        if (num - 2**count > 0):
+            num = num - 2**count
+            el = num
+            count = 0
+            continue
+        else:
+            break
+
+    binary = []  
+
+    for n in range(0, max(count_list) + 1):
+        binary.append(0)
+    for i in count_list:
+        binary[-(i+1)] = 1
+
+    return binary
+ 
+
+
+def x_or(num1, num2):
+    new_arr = []
+    flag = False
+    if len(num1) >= len(num2):
+        flag = True
+
+    # append big array's elements at start
+    if(flag):
+        for i in range(0, len(num1)-len(num2)):
+            new_arr.insert(i, num1[i])
+        for i in range(len(num1)-len(num2), len(num1)):
+            if num1[i] != num2[i]:
+                new_arr.insert(i, 1)
+            else:
+                new_arr.insert(i, 0)
+    else:
+        for i in range(0, len(num2)-len(num1)):
+            new_arr.insert(i, num2[i])
+        for i in range(len(num2)-len(num1), len(num2)):
+            if num1[i] != num2[i]:
+                new_arr.insert(i, 1)
+            else:
+                new_arr.insert(i, 0)
+    return new_arr
+    
+    
+print(x_or(bin_convert(1), bin_convert(2)))
+
+
+
+
+
+
+
+
+
