@@ -73,30 +73,37 @@ def bin_convert(num):
 def x_or(num1, num2):
     new_arr = []
     flag = False
-    if len(num1) >= len(num2):
-        flag = True
+    diff = len(num2)-len(num1)
 
+    # if the first number is actually bigger than the second
+    if len(num1) >= len(num2):
+        diff = len(num1)-len(num2)
+        flag = True
+    
+
+    
     # append big array's elements at start
+    
     if(flag):
-        for i in range(0, len(num1)-len(num2)):
+        for i in range(0, diff):
             new_arr.insert(i, num1[i])
-        for i in range(len(num1)-len(num2), len(num1)):
-            if num1[i] != num2[i]:
-                new_arr.insert(i, 1)
+        for i in range(0, len(num2)):
+            if num1[i + diff] != num2[i]:
+                new_arr.append(1)
             else:
-                new_arr.insert(i, 0)
+                new_arr.append(0)
     else:
-        for i in range(0, len(num2)-len(num1)):
+        for i in range(0, diff):
             new_arr.insert(i, num2[i])
-        for i in range(len(num2)-len(num1), len(num2)):
-            if num1[i] != num2[i]:
-                new_arr.insert(i, 1)
+        for i in range(0, len(num1)):
+            if num2[i + diff] != num1[i]:
+                new_arr.append(1)
             else:
-                new_arr.insert(i, 0)
+                new_arr.append(0)
     return new_arr
     
     
-print(x_or(bin_convert(1), bin_convert(2)))
+print(x_or(bin_convert(18), bin_convert(5)))
 
 
 
