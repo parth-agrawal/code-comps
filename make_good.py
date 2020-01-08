@@ -26,20 +26,35 @@ In the second line, output s integers b1,…,bs (0≤bi≤1018) — the elements
 If there are different solutions, you are allowed to output any of them.
 
 """
+def main():
+
+    for t in range(0, int(input())):
+        n = input()
+        arr = list(map(int, input().split()))
+        
+        bin_arr = []
+        for x in arr:
+            bin_arr.append(num_bin(x))
+        
+        xor_sum = bin_arr[0]
+        add_count = 0
+        nums_added = []
+        
+        for x in range(1, len(bin_arr)):
+            xor_sum = x_or(xor_sum, bin_arr[x])
+
+        if bin_num(xor_sum) == sum(arr)/2:
+            print("0")
+            print("")
+        else:
+            print("2")
+            print(bin_num(xor_sum), bin_num(xor_sum)+sum(arr))
 
 
-# for t in range(0, int(input())):
-  #  n = input()
-   # arr = list(map(int, input().split()))
-
-    # binary converter
-    
-bin_list = []
-
-# for el in arr:
+        
 
 
-def bin_convert(num):
+def num_bin(num):
     
     el = num
     count = 0
@@ -49,8 +64,9 @@ def bin_convert(num):
         if el >= 1:
             count += 1
             continue
-        count_list.append(count)
         
+        count_list.append(count)
+
         if (num - 2**count > 0):
             num = num - 2**count
             el = num
@@ -66,8 +82,17 @@ def bin_convert(num):
     for i in count_list:
         binary[-(i+1)] = 1
 
+    if num == 0:
+        binary = [0]
+
     return binary
  
+def bin_num(b):
+    num = 0
+    for x in range(0, len(b)):
+        if(b[-(x+1)] == 1):
+            num = 2**x + num
+    return num 
 
 
 def x_or(num1, num2):
@@ -102,9 +127,8 @@ def x_or(num1, num2):
                 new_arr.append(0)
     return new_arr
     
-    
-print(x_or(bin_convert(18), bin_convert(5)))
 
+main()
 
 
 
