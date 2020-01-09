@@ -61,7 +61,7 @@ def main():
 
     # iterates through different indices in the query
 
-    last_output = []
+    last_output = interact(query)
     
     for q_ind in range(1, k+1):
         query[-q_ind][0] += 1
